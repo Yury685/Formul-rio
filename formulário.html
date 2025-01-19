@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario para Reclutador</title>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+      padding: 20px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h1>Formulario para Reclutador en el Juego</h1>
+  <form id="reclutador-form">
+    <label for="nombre-jugador">1. ¿Cuál es tu nombre de jugador en el juego?</label>
+    <input type="text" id="nombre-jugador" name="nombre-jugador" required>
+
+    <label for="tiempo-jugando">2. ¿Cuánto tiempo llevas jugando este juego?</label>
+    <select id="tiempo-jugando" name="tiempo-jugando" required>
+      <option value="Menos de 1 mes">Menos de 1 mes</option>
+      <option value="De 1 a 6 meses">De 1 a 6 meses</option>
+      <option value="De 6 meses a 1 año">De 6 meses a 1 año</option>
+      <option value="Más de 1 año">Más de 1 año</option>
+    </select>
+
+    <label for="grupo-clan">3. ¿Has formado parte de un grupo/clan en el juego?</label>
+    <select id="grupo-clan" name="grupo-clan" required>
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
+
+    <label for="funcion-grupo">4. Si participaste, ¿cuál fue tu función en el grupo/clan?</label>
+    <input type="text" id="funcion-grupo" name="funcion-grupo">
+
+    <label for="reclutador-previo">5. ¿Has reclutado jugadores antes?</label>
+    <select id="reclutador-previo" name="reclutador-previo" required>
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
+
+    <label for="evaluar-jugador">6. ¿Cómo evalúas si un jugador sería una buena adición al grupo/clan?</label>
+    <textarea id="evaluar-jugador" name="evaluar-jugador" rows="3"></textarea>
+
+    <label for="estrategias">7. ¿Qué estrategias usarías para convencer a otros jugadores de unirse?</label>
+    <textarea id="estrategias" name="estrategias" rows="3"></textarea>
+
+    <label for="nuevos-jugadores">8. ¿Cómo ayudarías a nuevos jugadores a sentirse bienvenidos en el grupo/clan?</label>
+    <textarea id="nuevos-jugadores" name="nuevos-jugadores" rows="3"></textarea>
+
+    <label for="horas-juego">9. ¿Cuántas horas al día juegas, en promedio?</label>
+    <select id="horas-juego" name="horas-juego" required>
+      <option value="Menos de 1 hora">Menos de 1 hora</option>
+      <option value="De 1 a 3 horas">De 1 a 3 horas</option>
+      <option value="Más de 3 horas">Más de 3 horas</option>
+    </select>
+
+    <label for="motivo">10. ¿Por qué quieres ser reclutador en el juego?</label>
+    <textarea id="motivo" name="motivo" rows="3"></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    (function(){
+      emailjs.init("YOUR_USER_ID"); // Substitua YOUR_USER_ID pelo seu ID do EmailJS
+    })();
+
+    document.getElementById('reclutador-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      emailjs.sendForm('service_ivmf4zp', 'template_6hdzuus', this)
+        .then(function(response) {
+          alert('Envio realizado com sucesso!');
+        }, function(error) {
+          alert('Erro ao enviar: ' + JSON.stringify(error));
+        });
+    });
+  </script>
+</body>
+</html>
